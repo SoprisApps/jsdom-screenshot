@@ -12,7 +12,6 @@ const createServer = async (html, { serve }) => {
   const http = require("http");
   const connect = require("connect");
   const serveStatic = require("serve-static");
-  const finalhandler = require("finalhandler");
 
   const app = connect();
   app.use(
@@ -29,7 +28,6 @@ const createServer = async (html, { serve }) => {
   // serve all public paths
   serve.forEach(servedFolder => app.use(serveStatic(servedFolder)));
 
-  app.use(finalhandler);
   const server = http.createServer(app);
 
   // Start server on a random unused port.
