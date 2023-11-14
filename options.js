@@ -31,7 +31,7 @@ module.exports.getMergedOptions = options => {
 
   // config sugar to let users specify viewport directly
   if (options && options.viewport && !opts.launch.defaultViewport) {
-    opts.launch.defaultViewport = options.viewport;
+    opts.launch.defaultViewport = null;
   }
 
   if (!Array.isArray(opts.serve)) {
@@ -42,7 +42,7 @@ module.exports.getMergedOptions = options => {
   // depending on the used monitor.
   // See https://github.com/dferber90/jsdom-screenshot/issues/1
   addArg(opts, "--disable-lcd-text");
-  addArg(opts, `--window-size=${ opts.viewport.width },${ opts.viewport.height }`);
+  // addArg(opts, `--window-size=${ opts.viewport.width },${ opts.viewport.height }`);
 
   return opts;
 };
