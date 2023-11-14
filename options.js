@@ -42,6 +42,7 @@ module.exports.getMergedOptions = options => {
   // depending on the used monitor.
   // See https://github.com/dferber90/jsdom-screenshot/issues/1
   addArg(opts, "--disable-lcd-text");
+  addArg(opts, `--window-size=${ options.viewport.width },${ options.viewport.height }`);
 
   return opts;
 };
