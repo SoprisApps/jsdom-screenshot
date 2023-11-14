@@ -30,9 +30,9 @@ module.exports.getMergedOptions = options => {
   const opts = merge({}, defaultOptions, options);
 
   // config sugar to let users specify viewport directly
-  if (options && options.viewport && !opts.launch.defaultViewport) {
-    opts.launch.defaultViewport = null;
-  }
+  // if (options && options.viewport && !opts.launch.defaultViewport) {
+  //   opts.launch.defaultViewport = options.viewport;
+  // }
 
   if (!Array.isArray(opts.serve)) {
     throw new Error("jsdom-screenshot: options.serve must be an array");
