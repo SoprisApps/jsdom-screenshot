@@ -62,7 +62,7 @@ const takeScreenshot = async (url, opts) => {
   // https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions
   const browser = await puppeteer.launch(opts.launch);
   const page = await browser.newPage();
-  await page.setViewport(opts.viewport);
+  // await page.setViewport(opts.viewport);
 
   if (typeof opts.intercept === "function") {
     await page.setRequestInterception(true);

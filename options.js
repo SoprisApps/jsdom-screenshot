@@ -30,9 +30,9 @@ module.exports.getMergedOptions = options => {
   const opts = merge({}, defaultOptions, options);
 
   // config sugar to let users specify viewport directly
-  // if (options && options.viewport && !opts.launch.defaultViewport) {
-  //   opts.launch.defaultViewport = options.viewport;
-  // }
+  if (options && options.viewport && !opts.launch.defaultViewport) {
+    opts.launch.defaultViewport = options.viewport;
+  }
 
   if (!Array.isArray(opts.serve)) {
     throw new Error("jsdom-screenshot: options.serve must be an array");
@@ -42,7 +42,7 @@ module.exports.getMergedOptions = options => {
   // depending on the used monitor.
   // See https://github.com/dferber90/jsdom-screenshot/issues/1
   addArg(opts, "--disable-lcd-text");
-  // addArg(opts, `--window-size=${ opts.viewport.width },${ opts.viewport.height }`);
+  addArg(opts, `--window-size=${ opts.launch.defaultViewport.width },${ opts.launch.defaultViewport.height }`);
 
   return opts;
 };
