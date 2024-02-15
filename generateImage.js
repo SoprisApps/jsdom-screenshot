@@ -81,16 +81,18 @@ const takeScreenshot = async (url, opts) => {
     screenshotOptions.clip = await page.evaluate(
       (targetSelector, fallbackClip) => {
         const target = document.querySelector(targetSelector);
-        return target
-          ? {
-              x: target.offsetLeft,
-              y: target.offsetTop,
-              width: target.offsetWidth,
-              height: target.offsetHeight
-            }
-          : // fall back to manual clipping values in case the element could
-            // not be found
-            fallbackClip;
+        if (target) {
+          const rect = target.getBoundingClientRect();
+          return {
+            x: rect.x,
+            y: rect.y,
+            width: target.offsetWidth,
+            height: target.offsetHeight
+          };
+        }
+        // fall back to manual clipping values in case the element could
+        // not be found
+        return fallbackClip;
       },
       opts.targetSelector,
       screenshotOptions.clip
